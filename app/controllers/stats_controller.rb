@@ -7,36 +7,40 @@ class StatsController < ApplicationController
     # The numbers the user input are in the array @numbers.
     # ================================================================================
 
-    @sorted_numbers = "Replace this string with your answer"
+    @sorted_numbers = @numbers.sort
 
-    @count = "Replace this string with your answer"
+    @count = @numbers.count
 
-    @minimum = "Replace this string with your answer"
+    @minimum = @numbers.min
 
-    @maximum = "Replace this string with your answer"
+    @maximum = @numbers.max
 
-    @range = "Replace this string with your answer"
+    @range = @numbers.max-@numbers.min
 
     # Median
     # ======
 
-    @median = "Replace this string with your answer"
+    @len = @sorted_numbers.length
+    
+    @median = (@sorted_numbers[(@len - 1) / 2] + @sorted_numbers[@len / 2]) / 2.0
 
-    @sum = "Replace this string with your answer"
+    @sum = @numbers.sum
 
-    @mean = "Replace this string with your answer"
+    @mean = ((@numbers.sum)/(@numbers.count)).to_f
 
     # Variance
     # ========
 
-    @variance = "Replace this string with your answer"
+    @variance = @numbers.map{ |sample| (@mean - sample) ** 2 }.inject(0,:+) / @numbers.size.to_f
 
-    @standard_deviation = "Replace this string with your answer"
+    @standard_deviation = Math.sqrt(@variance)
 
     # Mode
     # ====
 
-    @mode = "Replace this string with your answer"
+    @freq = @numbers.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+    
+    @mode = @numbers.max_by { |v| @freq[v] }
 
     # ================================================================================
     # Your code goes above.
