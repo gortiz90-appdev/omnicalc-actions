@@ -11,8 +11,8 @@ class GeocodingController < ApplicationController
     # A URL-safe version of the street address, with spaces and other illegal
     #   characters removed, is in the string url_safe_street_address.
     # ==========================================================================
-
-    @url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{@url_safe_street_address}"
+    
+    @url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{@url_safe_street_address}&key=AIzaSyA5qwIlcKjijP_Ptmv46mk4cCjuWhSzS78"
     
     @parsed_data = JSON.parse(open(@url).read)
 
